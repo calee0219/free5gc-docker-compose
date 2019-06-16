@@ -1,0 +1,49 @@
+version: '3'
+
+services:
+  free5gc:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: free5gc
+    command: |
+      /bin/bash -c "
+        chmod 666 /dev/net/tun
+        /root/setup.sh
+        /bin/bash || exit 0
+        sleep 1000000
+      "
+    privileged: true
+    volumes:
+      - "./free5gc:/go/free5gc-dev"
+    cap_add:
+      - NET_ADMIN
+    devices:
+      - "/dev/net/tun:/dev/net/tun"
+    sysctls:
+      - net.ipv6.conf.all.disable_ipv6=0
+    environment:
+      DB_URI: mongodb://db/free5gc
+    networks:
+      - privnet
+    depends_on:
+      - db
+
+  db:
+    image: mongo
+    container_name: mongodb
+    command: mongod
+    expose:
+      - "27017"
+    networks:
+      - privnet
+    volumes:
+      - ./mongodb:/data/db
+
+networks:
+  privnet:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 10.5.0.0/24
+

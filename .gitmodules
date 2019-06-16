@@ -1,0 +1,3 @@
+[submodule "free5gc"]
+	path = free5gc
+	url = https://bitbucket.org/nctu_5g/free5gc.git
