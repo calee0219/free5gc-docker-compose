@@ -10,12 +10,13 @@ services:
       /bin/bash -c "
         chmod 666 /dev/net/tun
         /root/uptun_setup.sh
+        cd free5gc && autoreconf -iv && ./configure --prefix=`pwd`/install && make -j `nproc` && make install
         /bin/bash || exit 0
         sleep 1000000
       "
     privileged: true
     volumes:
-      - "./free5gc:/go/free5gc-dev"
+      - "./free5gc:/go/free5gc"
     cap_add:
       - NET_ADMIN
     devices:
