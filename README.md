@@ -97,3 +97,7 @@ $ docker exec -it mongodb mongo
 > db.subscribers.drop()
 > exit # (Or Ctrl-D)
 ```
+
+## Reference
+- https://github.com/open5gs/nextepc/tree/master/docker
+
