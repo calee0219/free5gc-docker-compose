@@ -85,15 +85,15 @@ $ docker exec -it free5gc bash
 ## Project map
 We use submodule to get source code and mount into container. For this instence, it's easy to develop the source code outside container and test it in container.
 
-When running docker compose, we just build the project in the first time. After you change the source code, please rebuild the project before run testing.
+When running docker compose, it won't build the project automatically. So don't forget build it up manually. After you change the source code, please rebuild the project before run testing as well.
+
+We used the coommand `sleep infinity` to make free5gc container keep running. It's not a good way. If you have any idea about, please post an issue or PR for me.
 
 ## Troubleshooting
 Sometimes, you need to drop data from DB(See #Troubleshooting from https://www.free5gc.org/installation).
 ```bash
-$ docker exec -it mongodb bash
-# mongo
+$ docker exec -it mongodb mongo
 > use free5gc
 > db.subscribers.drop()
-> exit
-> exit
+> exit # (Or Ctrl-D)
 ```
