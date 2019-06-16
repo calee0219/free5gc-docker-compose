@@ -10,7 +10,6 @@ services:
       /bin/bash -c "
         chmod 666 /dev/net/tun
         /root/uptun_setup.sh
-        cd free5gc && autoreconf -iv && ./configure --prefix=`pwd`/install && make -j `nproc` && make install
         /bin/bash || exit 0
         sleep 1000000
       "
@@ -27,6 +26,7 @@ services:
       DB_URI: mongodb://db/free5gc
     networks:
       - privnet
+      - untrust
     depends_on:
       - db
 
@@ -47,4 +47,9 @@ networks:
     ipam:
       config:
         - subnet: 10.5.0.0/24
+  untrust:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 192.168.5.0/24
 

@@ -9,3 +9,7 @@ ip addr del cafe::1/64 dev uptun 2> /dev/null
 ip addr add cafe::1/64 dev uptun
 ip link set uptun up
 
+sysctl -w net.ipv4.ip_forward=1
+iptables -t nat -A POSTROUTING -o eth1 -j MASQUERADE
+iptables -I INPUT -i uptun -j ACCEPT
+
