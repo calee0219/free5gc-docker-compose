@@ -9,7 +9,7 @@ services:
     command: |
       /bin/bash -c "
         chmod 666 /dev/net/tun
-        /root/setup.sh
+        /root/uptun_setup.sh
         /bin/bash || exit 0
         sleep 1000000
       "

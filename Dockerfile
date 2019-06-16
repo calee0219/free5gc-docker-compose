@@ -10,5 +10,5 @@ RUN go get -u -v "golang.org/x/sys/unix"
 RUN git clone https://bitbucket.org/nctu_5g/free5gc.git
 RUN cd free5gc && autoreconf -iv && ./configure --prefix=`pwd`/install && make -j `nproc` && make install
 
-COPY setup.sh /root
+COPY uptun_setup.sh /root
 
