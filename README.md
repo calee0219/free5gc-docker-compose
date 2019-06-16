@@ -20,7 +20,7 @@ free5GC-docker-compose is an free5gc all-in-one implement in docker-compose. It'
 
 #### Ubuntu
 Reference: https://docs.docker.com/install/linux/docker-ce/ubuntu/
-```shell
+```bash
 $ sudo apt-get update
 $ sudo apt-get install \
     apt-transport-https \
@@ -42,7 +42,7 @@ $ sudo apt-get install docker-ce docker-ce-cli containerd.io
 
 #### CentOS
 Reference: https://docs.docker.com/install/linux/docker-ce/centos/
-```shell
+```bash
 $ sudo yum install -y yum-utils \
   device-mapper-persistent-data \
   lvm2
@@ -59,14 +59,14 @@ $ sudo systemctl enable docker
 
 ### Install docker-compose
 Reference: https://docs.docker.com/v17.09/compose/install/
-```shell
+```bash
 $ sudo curl -L https://github.com/docker/compose/releases/download/1.18.0/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose
 $ sudo chmod +x /usr/local/bin/docker-compose
 ```
 
 ### Run Up
 Because we need to create tunnel interface, we need to use privileged container with root permission.
-```shell
+```bash
 $ git clone https://github.com/calee0219/free5gc-docker-compose.git
 $ cd free5gc-docker-compose
 $ git init && git submodule update
@@ -76,7 +76,7 @@ $ sudo docker-compose up -d # Run in backbround if need
 ```
 
 After you run up your compose, attach into docker and start your test or develop
-```shell
+```bash
 $ docker exec -it free5gc bash
 # cd free5gc
 # ./test/testngc -f install/etc/free5gc/test/free5gc.testngc.conf
@@ -89,11 +89,11 @@ When running docker compose, we just build the project in the first time. After 
 
 ## Troubleshooting
 Sometimes, you need to drop data from DB(See #Troubleshooting from https://www.free5gc.org/installation).
-```shell
+```bash
 $ docker exec -it mongodb bash
 # mongo
-# use free5gc
-# db.subscribers.drop()
-# exit
-# exit
+> use free5gc
+> db.subscribers.drop()
+> exit
+> exit
 ```
