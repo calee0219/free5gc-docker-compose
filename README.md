@@ -69,7 +69,7 @@ Because we need to create tunnel interface, we need to use privileged container 
 ```bash
 $ git clone https://github.com/calee0219/free5gc-docker-compose.git
 $ cd free5gc-docker-compose
-$ git init && git submodule update
+$ git submodule init && git submodule update
 $ docker-compose build
 $ sudo docker-compose up # Recommand use with tmux to run in frontground
 $ sudo docker-compose up -d # Run in backbround if need
