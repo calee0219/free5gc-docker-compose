@@ -98,6 +98,11 @@ $ docker exec -it mongodb mongo
 > exit # (Or Ctrl-D)
 ```
 
+Another way to drop DB data is just remove db data. Outside your container, run:
+```bash
+$ rm -rf ./mongodb
+```
+
 ## Reference
 - https://github.com/open5gs/nextepc/tree/master/docker
 
